@@ -13,17 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     newUserForm.addEventListener('submit', () => {
         event.preventDefault()
+
         const formData = new FormData(newUserForm)
         const name = formData.get('name')
         const username = formData.get('username')
         const email = formData.get('email')
         const password = formData.get('password')
-
+        
         fetch('http://localhost:3000/users', {
             method: 'POST',
             headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
                 user: {
@@ -34,5 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
         })
+            .then(response => response.json())
+            .then(console.log)
     })
 })       
