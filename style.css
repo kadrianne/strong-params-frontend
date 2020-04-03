@@ -1,3 +1,11 @@
 h1 {
     color: purple;
 }
+
+.user-card {
+    background-color: seagreen;
+    color: white;
+    margin: 5px;
+    padding: 5px 5px 5px 5px;
+    width: 200px;
+}
