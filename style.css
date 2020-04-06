@@ -1,3 +1,7 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
 h1 {
     color: purple;
 }
@@ -8,4 +12,12 @@ h1 {
     margin: 5px;
     padding: 5px 5px 5px 5px;
     width: 200px;
+}
+
+.success {
+    color: hsl(100,50%,50%)
+}
+
+.error-message {
+    color: red
 }

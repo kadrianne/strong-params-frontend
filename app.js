@@ -28,8 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        createUserCard(newUser.user)
-
         fetch('http://localhost:3000/users', {
             method: 'POST',
             headers: {
@@ -39,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(newUser)
         })
             .then(response => response.json())
-            .then(results => console.log)
+            .then(results => handleResponse(results, newUserForm))
+            .catch(error => console.log(error))
     })
 })
 
@@ -58,8 +57,32 @@ function createUserCard(user){
     document.body.append(userCard)
 }
 
-function displayMessage(message){
-    const alert = document.createElement('p')
-    alert.innerText = message
-    document.body.append(alert)
+function handleResponse(response, form){
+    if (response.user) {
+        createUserCard(response.user)
+        const successMessage = document.createElement('p')
+        successMessage.className = 'success'
+        successMessage.innerText = response.message
+        form.appendChild(successMessage)
+        form.reset()
+    } else {
+        const responseMessages = Object.values(response)
+        const errorMessages = document.querySelector('.error-message')
+
+        errorMessages.innerText = "User cannot be created due to the following errors:"
+        
+        responseMessages.forEach(messages => messages.forEach(message => {
+            const errorMessage = document.createElement('li')
+            
+            errorMessage.innerText = message
+
+            errorMessages.appendChild(errorMessage)
+        }))
+
+        form.appendChild(errorMessages)
+
+    }
+    // const alert = document.createElement('p')
+    // alert.innerText = response.message
+    // document.body.append(alert)
 }
