@@ -6,6 +6,12 @@ h1 {
     color: purple;
 }
 
+#user-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .user-card {
     background-color: seagreen;
     color: white;
@@ -20,4 +26,8 @@ h1 {
 
 .error-message {
     color: red
+}
+
+input {
+    margin-right: 5px;
 }
